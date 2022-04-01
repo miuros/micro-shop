@@ -1,0 +1,206 @@
+syntax = "proto3";
+
+package api.user;
+
+import "google/api/annotations.proto";
+
+option go_package = "user-srv/api/user/v1;v1";
+
+service User {
+	rpc CreateUser (CreateUserRequest) returns (CreateUserReply){
+		option(google.api.http)={
+			post: "/api/user/create",
+			body: "*",
+		};
+	};
+	rpc UpdateUser (UpdateUserRequest) returns (UpdateUserReply){
+		option (google.api.http) = {
+			put: "/api/user/update",
+			body: "*",
+		};
+	};
+	rpc DeleteUser (DeleteUserRequest) returns (DeleteUserReply){
+		option (google.api.http) = {
+			delete: "/api/user/delete/{uuid}",
+		};
+	};
+	rpc GetUser (GetUserRequest) returns (GetUserReply){
+		option (google.api.http) = {
+			get: "/api/user/get/{uuid}",
+		};
+	};
+	rpc ListUser (ListUserRequest) returns (ListUserReply){
+		option (google.api.http) = {
+			get: "/api/user/list/{page}/{limit}/{name}",
+		};
+	};
+	rpc SearchUserByName (SearchUserByNameRequest) returns (SearchUserByNameReply){
+		option (google.api.http) ={
+			get: "/api/user/find/{name}",
+		};
+	};
+	rpc Login(LoginRequest)returns (LoginReply){
+		option (google.api.http) ={
+			post: "/api/user/login",
+			body: "*",
+		};
+	};
+	rpc Logout(LogoutRequest)returns (LogoutReply){
+		option (google.api.http) = {
+			post: "/api/user/logout/{uuid}",
+			body: "*",
+		};
+	};
+
+	rpc CreateAddress(CreateAddressRequest)returns(CreateAddressReply){
+		option (google.api.http) = {
+			post: "/api/address/create",
+			body:"*",
+		};
+	};
+	rpc UpdateAddress(UpdateAddressRequest)returns(UpdateAddressReply){
+		option (google.api.http) = {
+			put: "/api/address/update",
+			body:"*",
+		};
+	};
+	rpc GetAddress(GetAddressRequest)returns(GetAddressReply){
+		option (google.api.http) = {
+			get: "/api/address/{id}",
+		};
+	};
+	rpc ListAddress(ListAddressRequest)returns(ListAddressReply){
+		option (google.api.http) = {
+			get: "/api/address/list/{userUuid}/{page}/{limit}",
+		};
+	};
+	rpc DeleteAddress(DeleteAddressRequest)returns(DeleteAddressRely){
+		option (google.api.http) = {
+			delete: "/api/address/delete/{userUuid}/{id}",
+		};
+	};
+}
+
+message AddressInfo {
+	uint64 id=1;
+	string userUuid=2;
+	string mobile=3;
+	string address=4;
+	string alias=5;
+}
+
+message DeleteAddressRequest{
+	uint64 id=1;
+	string userUuid=2;
+}
+
+message DeleteAddressRely{
+}
+
+message CreateAddressRequest{
+	AddressInfo address=1;
+}
+
+message CreateAddressReply {
+	AddressInfo address=1;
+}
+
+message UpdateAddressRequest{
+	AddressInfo address=1;
+}
+
+message UpdateAddressReply {
+	AddressInfo address=1;
+}
+
+message GetAddressRequest{
+	uint64 id=1;
+	string userUuid=2;
+}
+
+message GetAddressReply{
+	AddressInfo address=1;
+}
+
+message ListAddressRequest{
+	string userUuid=1;
+	uint64 page =2;
+	uint64 limit=3;
+}
+
+message ListAddressReply{
+	repeated AddressInfo addressList=1;
+}
+
+message UserInfo{
+	string uuid =1;
+	string name=2;
+	string password=3;
+	string roleName=4;
+	string mobile=5;
+	string mail=6;
+	string createAt=7;
+	string DeleteAt=8;
+	int64 isDeleted =9;
+}
+
+message LoginRequest{
+	string name=1;
+	string password=2;
+}
+
+message LoginReply{
+	UserInfo user=1;
+}
+
+message LogoutRequest{
+	string uuid=1;
+}
+
+message LogoutReply{
+}
+message SearchUserByNameRequest {
+	string name=1;
+	uint64 page=2;
+	uint64 limit=3;
+}
+
+message SearchUserByNameReply{
+	repeated UserInfo userList=1;
+}
+
+message CreateUserRequest {
+	UserInfo user=1;
+}
+message CreateUserReply {
+	UserInfo user=1;
+}
+
+message UpdateUserRequest {
+	UserInfo user=1;
+}
+message UpdateUserReply {
+	UserInfo user =1;
+}
+
+message DeleteUserRequest {
+	string uuid=1;
+}
+message DeleteUserReply {
+}
+
+message GetUserRequest {
+	string uuid=1;
+}
+message GetUserReply {
+	UserInfo user=1;
+}
+
+message ListUserRequest {
+	int64 page=1;
+	int64 limit=2;
+	string name=3;
+}
+message ListUserReply {
+	repeated UserInfo userList=1;
+}

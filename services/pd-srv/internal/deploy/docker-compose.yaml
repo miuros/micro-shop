@@ -1,0 +1,20 @@
+version: '3'
+services:
+  maria:
+    container_name: maria
+    image: docker.io/mariadb:latest
+    ports:
+      - "3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=zxcvbnm
+  redis: 
+    container_name: redis
+    image: docker.io/redis:latest
+    ports:
+      - "6379"
+  consul:
+    container_name: consul
+    image: docker.io/consul:latest
+    ports:
+      - "8500:8500"
+    command: "agent -server -bootstrap -ui -node=1 -client='0.0.0.0'"

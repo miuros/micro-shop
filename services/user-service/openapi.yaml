@@ -1,0 +1,430 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/apps/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: User API
+    version: 0.0.1
+paths:
+    /api/address/create:
+        post:
+            tags:
+                - User
+            operationId: User_CreateAddress
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreateAddressRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateAddressReply'
+    /api/address/delete/{userUuid}/{id}:
+        delete:
+            tags:
+                - User
+            operationId: User_DeleteAddress
+            parameters:
+                - name: userUuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteAddressRely'
+    /api/address/list/{userUuid}/{page}/{limit}:
+        get:
+            tags:
+                - User
+            operationId: User_ListAddress
+            parameters:
+                - name: userUuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: page
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: limit
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListAddressReply'
+    /api/address/update:
+        put:
+            tags:
+                - User
+            operationId: User_UpdateAddress
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateAddressRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateAddressReply'
+    /api/address/{id}:
+        get:
+            tags:
+                - User
+            operationId: User_GetAddress
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: userUuid
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetAddressReply'
+    /api/user/create:
+        post:
+            tags:
+                - User
+            operationId: User_CreateUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreateUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateUserReply'
+    /api/user/delete/{uuid}:
+        delete:
+            tags:
+                - User
+            operationId: User_DeleteUser
+            parameters:
+                - name: uuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteUserReply'
+    /api/user/find/{name}:
+        get:
+            tags:
+                - User
+            operationId: User_SearchUserByName
+            parameters:
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: limit
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/SearchUserByNameReply'
+    /api/user/get/{uuid}:
+        get:
+            tags:
+                - User
+            operationId: User_GetUser
+            parameters:
+                - name: uuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetUserReply'
+    /api/user/list/{page}/{limit}/{name}:
+        get:
+            tags:
+                - User
+            operationId: User_ListUser
+            parameters:
+                - name: page
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: limit
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListUserReply'
+    /api/user/login:
+        post:
+            tags:
+                - User
+            operationId: User_Login
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/LoginRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/LoginReply'
+    /api/user/logout/{uuid}:
+        post:
+            tags:
+                - User
+            operationId: User_Logout
+            parameters:
+                - name: uuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/LogoutRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/LogoutReply'
+    /api/user/update:
+        put:
+            tags:
+                - User
+            operationId: User_UpdateUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateUserReply'
+components:
+    schemas:
+        AddressInfo:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: uint64
+                userUuid:
+                    type: string
+                mobile:
+                    type: string
+                address:
+                    type: string
+                alias:
+                    type: string
+        CreateAddressReply:
+            type: object
+            properties:
+                address:
+                    $ref: '#/components/schemas/AddressInfo'
+        CreateAddressRequest:
+            type: object
+            properties:
+                address:
+                    $ref: '#/components/schemas/AddressInfo'
+        CreateUserReply:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/UserInfo'
+        CreateUserRequest:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/UserInfo'
+        DeleteAddressRely:
+            type: object
+            properties: {}
+        DeleteUserReply:
+            type: object
+            properties: {}
+        GetAddressReply:
+            type: object
+            properties:
+                address:
+                    $ref: '#/components/schemas/AddressInfo'
+        GetUserReply:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/UserInfo'
+        ListAddressReply:
+            type: object
+            properties:
+                addressList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/AddressInfo'
+        ListUserReply:
+            type: object
+            properties:
+                userList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/UserInfo'
+        LoginReply:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/UserInfo'
+        LoginRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                password:
+                    type: string
+        LogoutReply:
+            type: object
+            properties: {}
+        LogoutRequest:
+            type: object
+            properties:
+                uuid:
+                    type: string
+        SearchUserByNameReply:
+            type: object
+            properties:
+                userList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/UserInfo'
+        UpdateAddressReply:
+            type: object
+            properties:
+                address:
+                    $ref: '#/components/schemas/AddressInfo'
+        UpdateAddressRequest:
+            type: object
+            properties:
+                address:
+                    $ref: '#/components/schemas/AddressInfo'
+        UpdateUserReply:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/UserInfo'
+        UpdateUserRequest:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/UserInfo'
+        UserInfo:
+            type: object
+            properties:
+                uuid:
+                    type: string
+                name:
+                    type: string
+                password:
+                    type: string
+                roleName:
+                    type: string
+                mobile:
+                    type: string
+                mail:
+                    type: string
+                createAt:
+                    type: string
+                DeleteAt:
+                    type: string
+                isDeleted:
+                    type: integer
+                    format: int64
+tags:
+    - name: User

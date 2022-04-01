@@ -1,0 +1,459 @@
+syntax = "proto3";
+
+package v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "user/api/v1;v1";
+
+// The greeting service definition.
+service PdService {
+  rpc CreatePd(CreatePdReq)returns(CreatePdReply){
+    option(google.api.http) = {
+      post:"/api/product/create",
+      body:"*",
+    };
+  }
+  rpc UpdatePd(UpdatePdReq)returns(UpdatePdReply){
+    option(google.api.http)={
+      put: "/api/product/update",
+      body: "*",
+    };
+  }
+  rpc DeletePd(DeletePdReq)returns(DeletePdReply){
+    option (google.api.http) = {
+      delete: "/api/product/delete/{userUuid}/{id}",
+    };
+  }
+  rpc GetPd(GetPdReq)returns (GetPdReply){
+    option (google.api.http) = {
+      get: "/api/product/{id}",
+    };
+  }
+  rpc ListPd(ListPdReq)returns(ListPdReply){
+    option(google.api.http) = {
+      get:"/api/product/list/{page}/{limit}/{name}",
+    };
+  }
+  rpc ListForSp(ListForSpReq)returns(ListForSpReply){
+    option(google.api.http)={
+      get: "/api/product/list/{page}/{limit}/{shopId}",
+    };
+  }
+  rpc FindPdByName(ListPdReq)returns(ListPdReply){
+    option (google.api.http) ={
+      get: "/api/product/list/{page}/{limit}/{name}",
+    };
+  }
+  rpc ListPdByCi(ListPdByCiReq)returns(ListPdByCiReply){
+    option (google.api.http) ={
+      get: "/api/product/listbycategoryid/{categoryId}/{page}/{limit}",
+    };
+  }
+
+  rpc CreateBn(CreateBnReq)returns(CreateBnReply){
+    option (google.api.http) ={
+      post: "/api/banner/create",
+      body: "*",
+    };
+  }
+  rpc UpdateBn(UpdateBnReq)returns(UpdateBnReply){
+    option (google.api.http) = {
+      put: "/api/banner/update",
+      body: "*",
+    };
+  }
+  rpc DeleteBn(DeleteBnReq)returns(DeleteBnReply){
+    option (google.api.http) ={
+      delete: "/api/banner/delete/{id}",
+    };
+  }
+  rpc GetBn(GetBnReq) returns (GetBnReply){
+    option (google.api.http) = {
+      get: "/api/banner/get/{id}",
+    };
+  }
+  rpc ListBn(ListBnReq)returns(ListBnReply){
+    option (google.api.http) ={
+      get: "/api/banner/list/{page}/{limit}",
+    };
+  }
+
+  rpc CreateCart(CreateCartReq)returns(CreateCartReply){
+    option (google.api.http) = {
+      post: "/api/cart/create",
+      body:"*",
+    };
+  }
+  rpc UpdateCart(UpdateCartReq)returns(UpdateCartReply){
+    option (google.api.http) ={
+      put:"/api/cart/update",
+      body:"*",
+    };
+  }
+  rpc DeleteCart(DeleteCartReq)returns(DeleteCartReply){
+    option (google.api.http) = {
+      delete: "/api/cart/delete/{userUuid}/{id}",
+    };
+  }
+  rpc GetCart(GetCartReq)returns(GetCartReply){
+    option (google.api.http) ={
+      get: "/api/cart/get/{id}/{userUuid}",
+    };
+  }
+  rpc ListCart(ListCartReq)returns(ListCartReply){
+    option (google.api.http) = {
+      get: "/api/cart/list/{userUuid}/{page}/{limit}",
+    };
+  }
+
+  rpc CreateShop(CreateShopReq)returns(CreateShopReply){
+    option (google.api.http) = {
+      post: "/api/shop/create",
+      body:"*",
+    };
+  }
+  rpc UpdateShop(UpdateShopReq)returns(UpdateShopReply){
+    option (google.api.http) = {
+      put: "/api/shop/update",
+      body: "*",
+    };
+  }
+  rpc DeleteShop(DeleteShopReq)returns(DeleteShopReply){
+    option (google.api.http) = {
+      delete:"/api/shop/delete/{userUuid}/{id}",
+    };
+  }
+  rpc GetShop(GetShopReq)returns(GetShopReply){
+    option (google.api.http)={
+      get: "/api/shop/get/{id}",
+    };
+  }
+  rpc GetSpByUuid(GetSpByUuidReq)returns(GetSpByUuidReply){
+    option(google.api.http) ={
+      get: "/api/shop/getByUuid/{userUuid}",
+    };
+  }
+  rpc ListShop(ListShopReq)returns(ListShopReply){
+    option (google.api.http) = {
+      get:"/api/shop/list/{page}/{limit}/{name}",
+    };
+  }
+
+  rpc CreateCg(CreateCgReq)returns(CreateCgReply){
+    option (google.api.http)={
+      post: "/api/category/create",
+      body:"*",
+    };
+  }
+  rpc UpdateCg(UpdateCgReq)returns(UpdateCgReply){
+    option(google.api.http)={
+      put:"/api/category/update",
+      body:"*",
+    };
+  }
+  rpc DeleteCg(DeleteCgReq)returns(DeleteCgReply){
+    option(google.api.http)={
+      delete:"/api/category/delete/{id}",
+    };
+  }
+  rpc GetCg(GetCgReq)returns(GetCgReply){
+    option(google.api.http)={
+      get:"/api/category/get/{id}",
+    };
+  }
+  rpc ListCg(ListCgReq)returns(ListCgReply){
+    option(google.api.http)={
+      get:"/api/category/list/{page}/{limit}",
+    };
+  }
+}
+
+message Category{
+  uint64 id=1;
+  string name=2;
+}
+
+message CreateCgReq{
+  Category cg=1;
+}
+
+message CreateCgReply{
+  Category cg=1;
+}
+
+message UpdateCgReq{
+  Category cg=1;
+}
+
+message UpdateCgReply{
+  Category cg=1;
+}
+
+message DeleteCgReq{
+  uint64  id=1;
+}
+
+message DeleteCgReply{}
+
+message GetCgReq{
+  uint64 id=1;
+}
+
+message GetCgReply{
+  Category cg=1;
+}
+
+message ListCgReq{
+  uint64 page=1;
+  uint64 limit=2;
+}
+
+message ListCgReply{
+  repeated Category cgList=1;
+}
+
+message Shop{
+  int64 id=1;
+  string name=2;
+  string imageUrl=3;
+  string userUuid=4;
+  string address=5;
+  string createAt=6;
+  string deleteAt=7;
+  int64 isDeleted=8;
+}
+
+message CreateShopReq{
+  Shop sp=1;
+}
+
+message CreateShopReply{
+  Shop sp=1;
+}
+
+message UpdateShopReq{
+  Shop sp=1;
+}
+
+message UpdateShopReply{
+  Shop sp=1;
+}
+
+message DeleteShopReq{
+  int64 id=1;
+  string userUuid=2;
+}
+
+message DeleteShopReply{
+
+}
+
+message GetShopReq{
+  int64 id=1;
+}
+
+message GetShopReply{
+  Shop sp=1;
+}
+
+message GetSpByUuidReq{
+  string userUuid=1;
+}
+
+message GetSpByUuidReply{
+  Shop sp=1;
+}
+
+message ListShopReq{
+  int64  page=1;
+  int64 limit=2;
+  string name=3;
+}
+
+message ListShopReply{
+  repeated Shop spList=1;
+}
+
+message Cart{
+  int64 id=1;
+  string imageUrl=2;
+  string userUuid=3;
+  int64 productId=4;
+  string productName=5;
+  int64 shopId=6;
+  string shopName=7;
+  int64  num=8;
+  float price=9;
+}
+
+message CreateCartReq{
+  Cart c=1;
+}
+
+message CreateCartReply{
+  Cart c=1;
+}
+
+message UpdateCartReq{
+  Cart c=1;
+}
+
+message UpdateCartReply{
+  Cart c=1;
+}
+
+message DeleteCartReq{
+  int64 id=1;
+  string userUuid=2;
+}
+
+message DeleteCartReply{
+}
+
+message GetCartReq{
+  int64  id=1;
+  string userUuid=2;
+}
+
+message GetCartReply{
+  Cart c=1;
+}
+
+message ListCartReq{
+  string userUuid=2;
+  int64 page=3;
+  int64  limit=4;
+}
+
+message ListCartReply{
+  repeated Cart cartList=1;
+}
+
+message Banner{
+  int64  id=1;
+  string name =2;
+  string imageUrl=3;
+  string redirectUrl=4;
+}
+
+message CreateBnReq{
+  Banner bn=1;
+}
+
+message CreateBnReply{
+  Banner bn=1;
+}
+
+message UpdateBnReq{
+  Banner bn=1;
+}
+
+message UpdateBnReply{
+  Banner bn =1;
+}
+
+message DeleteBnReq{
+  int64 id=1;
+}
+
+message DeleteBnReply{
+
+}
+
+message GetBnReq{
+  int64 id=1;
+}
+
+message GetBnReply{
+  Banner bn=1;
+}
+
+message ListBnReq{
+  int64  page=1;
+  int64 limit=2;
+}
+
+message ListBnReply{
+  repeated Banner bnList=1;
+}
+
+message Product{
+  int64 Id =1;
+  string name=2;
+  float originPrice =3;
+  string imageUrl =4;
+  float sellPrice =5;
+  string desc =6;
+  string tags=7;
+  int64 shopId=8;
+  int64 categoryId=9;
+  string extra=10;
+  string createAt=11;
+  string deleteAt=12;
+  int64 isDeleted=13;
+}
+
+message ListForSpReq{
+  uint64 shopId=1;
+  uint64 page=2;
+  uint64 limit=3;
+}
+
+message ListForSpReply{
+  repeated Product pdList=1;
+}
+
+message CreatePdReq{
+  string userUuid=2;
+  Product pd=1;
+}
+
+message CreatePdReply{
+  Product pd=1;
+}
+
+message UpdatePdReq{
+  Product pd=1;
+  string userUuid=2;
+}
+
+message UpdatePdReply{
+  Product pd=1;
+}
+
+message DeletePdReq{
+  int64 id=1;
+  string userUuid=2;
+}
+
+message DeletePdReply{
+}
+
+message GetPdReq{
+  int64  id=1;
+}
+
+message GetPdReply{
+  Product pd=1;
+}
+
+message ListPdReq{
+  int64 page=1;
+  int64  limit=2;
+  string name=3;
+}
+
+message ListPdReply{
+  repeated Product pdList=1;
+}
+
+message ListPdByCiReq{
+  uint64 limit=1;
+  uint64  page=2;
+  uint64 categoryId=3;
+}
+
+message ListPdByCiReply{
+  repeated Product pdList=1;
+}

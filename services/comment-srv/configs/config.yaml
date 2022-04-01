@@ -1,0 +1,24 @@
+server:
+  http:
+    addr: 0.0.0.0:8004
+    timeout: 1s
+  grpc:
+    addr: 0.0.0.0:9004
+    timeout: 1s
+data:
+  database:
+    driver: mysql
+    source: root:zxcvbnm@tcp(172.19.0.2:3306)/miuros
+  redis:
+    addr: 172.18.0.2:6379
+    read_timeout: 0.2s
+    write_timeout: 0.2s
+  rabbit:
+    addr: amqp://root:zxcvbnm@172.19.0.4:5672
+  etcd:
+    addr: 172.18.0.3:2379
+  consul:
+    addr: 172.19.0.3:8500
+  user: 2285884481@qq.com
+  pwd: eevnzjpedakreaei
+  host: smtp.qq.com

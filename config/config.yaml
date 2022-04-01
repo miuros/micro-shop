@@ -1,0 +1,24 @@
+mail:
+  addr: 2285884481@qq.com
+  passwd: eevnzjpedakreaei
+  host: smtp.qq.com
+  port: 465
+
+consul:
+    addr: 172.19.0.3:8500
+
+http:
+    addr: 0.0.0.0:10000
+
+maria:
+    driver: mysql
+    endpoint: root:zxcvbnm@tcp(172.19.0.2:3306)/micro
+
+jaeger:
+    addr: 172.17.0.2:6831
+
+oss:
+    base: pic.miuros.cc
+    ak: 4vjq-Oucl707d8oVUlLOkQmfmlMY1P1E6c9E2oC1
+    sk: 262P_0Wfa1tuCG0WDcyK7f-2mamkyYBBmSlqJfTh
+    bucket: miu

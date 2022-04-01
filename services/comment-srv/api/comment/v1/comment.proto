@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "user/api/v1;v1";
+
+service CmService{
+  rpc CreateCm(CreateCmReq)returns(CreateCmReply){
+    option (google.api.http) = {
+      post: "/api/comment/create",
+      body: "*",
+    };
+  }
+  rpc UpdateCm(UpdateCmReq)returns(UpdateCmReply){
+    option (google.api.http) ={
+      put:"/api/comment/update",
+      body:"*",
+    };
+  }
+  rpc DeleteCm(DeleteCmReq)returns(DeleteCmReply){
+    option (google.api.http) ={
+      delete: "/api/comment/delete/{id}/{userUuid}",
+    };
+  }
+  rpc GetCm(GetCmReq)returns(GetCmReply){
+    option (google.api.http) = {
+      get:"/api/comment/get/{id}",
+    };
+  }
+  rpc ListCm(ListCmReq)returns(ListCmReply){
+    option (google.api.http) ={
+      get: "/api/comment/list/{page}/{limit}/{productId}",
+    };
+  }
+}
+
+message Comment{
+  int64 id=1;
+  int64 productId=2;
+  string userUuid=3;
+  string toUserUuid=4;
+  string content =5;
+  string createAt =6;
+  string updateAt=7;
+  string deleteAt=8;
+  int64 isDeleted=9;
+}
+
+message CreateCmReq{
+   Comment cm=1;
+}
+
+message CreateCmReply{
+  Comment cm=1;
+}
+
+message UpdateCmReq{
+  Comment cm=1;
+}
+
+message  UpdateCmReply{
+  Comment cm=1;
+}
+
+message DeleteCmReq{
+  int64 id=1;
+  string userUuid=2;
+}
+
+message DeleteCmReply{
+
+}
+
+message GetCmReq{
+  int64 id=1;
+}
+
+message GetCmReply{
+  Comment cm=1;
+}
+
+message  ListCmReq{
+  int64 page=1;
+  int64 limit=2;
+  int64 productId=3;
+}
+
+message ListCmReply{
+  repeated Comment CmList=1;
+}

@@ -1,0 +1,923 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/apps/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: PdService API
+    description: The greeting service definition.
+    version: 0.0.1
+paths:
+    /api/banner/create:
+        post:
+            tags:
+                - PdService
+            operationId: PdService_CreateBn
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreateBnReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateBnReply'
+    /api/banner/delete/{id}:
+        delete:
+            tags:
+                - PdService
+            operationId: PdService_DeleteBn
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteBnReply'
+    /api/banner/get/{id}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_GetBn
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetBnReply'
+    /api/banner/list/{page}/{limit}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_ListBn
+            parameters:
+                - name: page
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: limit
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListBnReply'
+    /api/banner/update:
+        put:
+            tags:
+                - PdService
+            operationId: PdService_UpdateBn
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateBnReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateBnReply'
+    /api/cart/create:
+        post:
+            tags:
+                - PdService
+            operationId: PdService_CreateCart
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreateCartReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateCartReply'
+    /api/cart/delete/{userUuid}/{id}:
+        delete:
+            tags:
+                - PdService
+            operationId: PdService_DeleteCart
+            parameters:
+                - name: userUuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteCartReply'
+    /api/cart/get/{id}/{userUuid}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_GetCart
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: userUuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetCartReply'
+    /api/cart/list/{userUuid}/{page}/{limit}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_ListCart
+            parameters:
+                - name: userUuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: page
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: limit
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListCartReply'
+    /api/cart/update:
+        put:
+            tags:
+                - PdService
+            operationId: PdService_UpdateCart
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateCartReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateCartReply'
+    /api/category/create:
+        post:
+            tags:
+                - PdService
+            operationId: PdService_CreateCg
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreateCgReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateCgReply'
+    /api/category/delete/{id}:
+        delete:
+            tags:
+                - PdService
+            operationId: PdService_DeleteCg
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteCgReply'
+    /api/category/get/{id}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_GetCg
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetCgReply'
+    /api/category/list/{page}/{limit}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_ListCg
+            parameters:
+                - name: page
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: limit
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListCgReply'
+    /api/category/update:
+        put:
+            tags:
+                - PdService
+            operationId: PdService_UpdateCg
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateCgReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateCgReply'
+    /api/product/create:
+        post:
+            tags:
+                - PdService
+            operationId: PdService_CreatePd
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreatePdReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreatePdReply'
+    /api/product/delete/{userUuid}/{id}:
+        delete:
+            tags:
+                - PdService
+            operationId: PdService_DeletePd
+            parameters:
+                - name: userUuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeletePdReply'
+    /api/product/list/{page}/{limit}/{name}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_FindPdByName
+            parameters:
+                - name: page
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: limit
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListPdReply'
+    /api/product/list/{page}/{limit}/{shopId}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_ListForSp
+            parameters:
+                - name: page
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: limit
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: shopId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListForSpReply'
+    /api/product/listbycategoryid/{categoryId}/{page}/{limit}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_ListPdByCi
+            parameters:
+                - name: categoryId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: page
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: limit
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListPdByCiReply'
+    /api/product/update:
+        put:
+            tags:
+                - PdService
+            operationId: PdService_UpdatePd
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdatePdReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdatePdReply'
+    /api/product/{id}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_GetPd
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetPdReply'
+    /api/shop/create:
+        post:
+            tags:
+                - PdService
+            operationId: PdService_CreateShop
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreateShopReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateShopReply'
+    /api/shop/delete/{userUuid}/{id}:
+        delete:
+            tags:
+                - PdService
+            operationId: PdService_DeleteShop
+            parameters:
+                - name: userUuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteShopReply'
+    /api/shop/get/{id}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_GetShop
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetShopReply'
+    /api/shop/getByUuid/{userUuid}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_GetSpByUuid
+            parameters:
+                - name: userUuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetSpByUuidReply'
+    /api/shop/list/{page}/{limit}/{name}:
+        get:
+            tags:
+                - PdService
+            operationId: PdService_ListShop
+            parameters:
+                - name: page
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: limit
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListShopReply'
+    /api/shop/update:
+        put:
+            tags:
+                - PdService
+            operationId: PdService_UpdateShop
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateShopReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateShopReply'
+components:
+    schemas:
+        Banner:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                name:
+                    type: string
+                imageUrl:
+                    type: string
+                redirectUrl:
+                    type: string
+        Cart:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                imageUrl:
+                    type: string
+                userUuid:
+                    type: string
+                productId:
+                    type: integer
+                    format: int64
+                productName:
+                    type: string
+                shopId:
+                    type: integer
+                    format: int64
+                shopName:
+                    type: string
+                num:
+                    type: integer
+                    format: int64
+                price:
+                    type: number
+                    format: float
+        Category:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: uint64
+                name:
+                    type: string
+        CreateBnReply:
+            type: object
+            properties:
+                bn:
+                    $ref: '#/components/schemas/Banner'
+        CreateBnReq:
+            type: object
+            properties:
+                bn:
+                    $ref: '#/components/schemas/Banner'
+        CreateCartReply:
+            type: object
+            properties:
+                c:
+                    $ref: '#/components/schemas/Cart'
+        CreateCartReq:
+            type: object
+            properties:
+                c:
+                    $ref: '#/components/schemas/Cart'
+        CreateCgReply:
+            type: object
+            properties:
+                cg:
+                    $ref: '#/components/schemas/Category'
+        CreateCgReq:
+            type: object
+            properties:
+                cg:
+                    $ref: '#/components/schemas/Category'
+        CreatePdReply:
+            type: object
+            properties:
+                pd:
+                    $ref: '#/components/schemas/Product'
+        CreatePdReq:
+            type: object
+            properties:
+                userUuid:
+                    type: string
+                pd:
+                    $ref: '#/components/schemas/Product'
+        CreateShopReply:
+            type: object
+            properties:
+                sp:
+                    $ref: '#/components/schemas/Shop'
+        CreateShopReq:
+            type: object
+            properties:
+                sp:
+                    $ref: '#/components/schemas/Shop'
+        DeleteBnReply:
+            type: object
+            properties: {}
+        DeleteCartReply:
+            type: object
+            properties: {}
+        DeleteCgReply:
+            type: object
+            properties: {}
+        DeletePdReply:
+            type: object
+            properties: {}
+        DeleteShopReply:
+            type: object
+            properties: {}
+        GetBnReply:
+            type: object
+            properties:
+                bn:
+                    $ref: '#/components/schemas/Banner'
+        GetCartReply:
+            type: object
+            properties:
+                c:
+                    $ref: '#/components/schemas/Cart'
+        GetCgReply:
+            type: object
+            properties:
+                cg:
+                    $ref: '#/components/schemas/Category'
+        GetPdReply:
+            type: object
+            properties:
+                pd:
+                    $ref: '#/components/schemas/Product'
+        GetShopReply:
+            type: object
+            properties:
+                sp:
+                    $ref: '#/components/schemas/Shop'
+        GetSpByUuidReply:
+            type: object
+            properties:
+                sp:
+                    $ref: '#/components/schemas/Shop'
+        ListBnReply:
+            type: object
+            properties:
+                bnList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Banner'
+        ListCartReply:
+            type: object
+            properties:
+                cartList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Cart'
+        ListCgReply:
+            type: object
+            properties:
+                cgList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Category'
+        ListForSpReply:
+            type: object
+            properties:
+                pdList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Product'
+        ListPdByCiReply:
+            type: object
+            properties:
+                pdList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Product'
+        ListPdReply:
+            type: object
+            properties:
+                pdList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Product'
+        ListShopReply:
+            type: object
+            properties:
+                spList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Shop'
+        Product:
+            type: object
+            properties:
+                Id:
+                    type: integer
+                    format: int64
+                name:
+                    type: string
+                originPrice:
+                    type: number
+                    format: float
+                imageUrl:
+                    type: string
+                sellPrice:
+                    type: number
+                    format: float
+                desc:
+                    type: string
+                tags:
+                    type: string
+                shopId:
+                    type: integer
+                    format: int64
+                categoryId:
+                    type: integer
+                    format: int64
+                extra:
+                    type: string
+                createAt:
+                    type: string
+                deleteAt:
+                    type: string
+                isDeleted:
+                    type: integer
+                    format: int64
+        Shop:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                name:
+                    type: string
+                imageUrl:
+                    type: string
+                userUuid:
+                    type: string
+                address:
+                    type: string
+                createAt:
+                    type: string
+                deleteAt:
+                    type: string
+                isDeleted:
+                    type: integer
+                    format: int64
+        UpdateBnReply:
+            type: object
+            properties:
+                bn:
+                    $ref: '#/components/schemas/Banner'
+        UpdateBnReq:
+            type: object
+            properties:
+                bn:
+                    $ref: '#/components/schemas/Banner'
+        UpdateCartReply:
+            type: object
+            properties:
+                c:
+                    $ref: '#/components/schemas/Cart'
+        UpdateCartReq:
+            type: object
+            properties:
+                c:
+                    $ref: '#/components/schemas/Cart'
+        UpdateCgReply:
+            type: object
+            properties:
+                cg:
+                    $ref: '#/components/schemas/Category'
+        UpdateCgReq:
+            type: object
+            properties:
+                cg:
+                    $ref: '#/components/schemas/Category'
+        UpdatePdReply:
+            type: object
+            properties:
+                pd:
+                    $ref: '#/components/schemas/Product'
+        UpdatePdReq:
+            type: object
+            properties:
+                pd:
+                    $ref: '#/components/schemas/Product'
+                userUuid:
+                    type: string
+        UpdateShopReply:
+            type: object
+            properties:
+                sp:
+                    $ref: '#/components/schemas/Shop'
+        UpdateShopReq:
+            type: object
+            properties:
+                sp:
+                    $ref: '#/components/schemas/Shop'
+tags:
+    - name: PdService

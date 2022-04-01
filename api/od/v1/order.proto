@@ -1,0 +1,291 @@
+syntax = "proto3";
+
+package api.user;
+
+import "google/api/annotations.proto";
+
+option go_package = "user-service/api/order/v1;v1";
+
+service OdSrv{
+  rpc CreateOd(CreateOrderReq)returns(CreateOrderReply){
+    option (google.api.http) = {
+      post: "/api/order/create",
+      body: "*",
+    };
+  }
+  rpc UpdateOd(UpdateOrderReq)returns(UpdateOrderReply){
+    option (google.api.http) ={
+      put:"/api/order/update",
+      body: "*",
+    };
+  }
+  rpc DeleteOd(DeleteOrderReq)returns(DeleteOrderReply){
+    option (google.api.http) = {
+      delete: "/api/order/delete/{id}/{userUuid}",
+    };
+  }
+  rpc GetOd(GetOrderReq)returns(GetOrderReply){
+    option (google.api.http) = {
+      get:"/api/order/get/{id}/{userUuid}",
+    };
+  }
+  rpc ListOd(ListOrderReq)returns(ListOrderReply){
+    option (google.api.http) = {
+      get: "/api/order/list/{userUuid}/{page}/{limit}",
+    };
+  }
+  rpc ListOdByCateId(ListOrderByCateIdReq)returns(ListOrderByCateIdReply){
+    option (google.api.http) = {
+      get: "/api/order/list/by/cate/{userUuid}/{cateId}",
+    };
+  }
+  rpc ListOdForShopper(ListOdForSReq)returns(ListOdForSpReply){
+    option (google.api.http)={
+      get:"/api/od/v1/listforshop/{shopId}/{status}/{limit}/{page}",
+    };
+  }
+  rpc PayOd(PayOdReq)returns(PayOdReply){
+    option (google.api.http)={
+      post: "/api/od/v1/pay",
+      body: "*"
+    };
+  }
+
+  rpc CreateStock(CreateStockReq)returns(CreateStockReply){
+    option (google.api.http) = {
+      post: "/api/stock/create",
+      body: "*",
+    };
+  }
+  rpc UpdateStock(UpdateStockReq)returns(UpdateStockReply){
+    option (google.api.http) ={
+      put: "/api/stock/update",
+      body:"*",
+    };
+  }
+  rpc DeleteStock(DeleteStockReq)returns(DeleteStockReply){
+    option (google.api.http) = {
+      delete:"/api/stock/delete/{productId}/{userUuid}",
+    };
+  }
+  rpc GetStock(GetStockReq)returns(GetStockReply){
+    option (google.api.http) = {
+      get:"/api/stock/get/{productId}",
+    };
+  }
+
+  rpc CreateCate(CreateCateReq)returns(CreateCateReply){
+    option (google.api.http) ={
+      post: "/api/cate/create",
+      body:"*",
+    };
+  }
+  /*
+  rpc UpdateCate(UpdateCateReq)returns(UpdateCateReply){
+    option (google.api.http) = {
+      put:"/api/cate/update",
+      body:"*",
+    };
+  }
+  rpc DeleteCate(DeleteCateReq)returns(DeleteCateReply){
+    option (google.api.http) ={
+      delete:"/api/cate/deleted/{userUuid}/{id}",
+    };
+  }
+  rpc GetCate(GetCateReq)returns(GetCateReply){
+    option (google.api.http) = {
+      get: "/api/cate/get/{userUuid}/{id}",
+    };
+  }
+  rpc ListCate(ListCateReq)returns(ListCateReply){
+    option (google.api.http) = {
+      get: "/api/cate/list/{userUuid}/{page}/{limit}",
+    };
+  }
+   */
+}
+
+message Cate{
+  int64 id=1;
+  string userUuid=2;
+  int64 status=3;
+  int64 isDeleted=4;
+  float price=5;
+  string deleteAt=6;
+  int64 addressId=7;
+}
+
+message CreateCateReq{
+  Cate cate=1;
+}
+
+message CreateCateReply{
+  Cate cate=1;
+}
+
+message UpdateCateReq{
+  Cate cate=1;
+}
+
+message UpdateCateReply{
+  Cate cate =1;
+}
+
+message DeleteCateReq{
+  int64 id=1;
+  string userUuid=2;
+}
+
+message DeleteCateReply{}
+
+message GetCateReq{
+  int64 id=1;
+  string userUuid=2;
+}
+
+message GetCateReply{
+  Cate cate=1;
+}
+
+message ListCateReq{
+  int64 page=1;
+  int64 limit=2;
+  string userUuid=3;
+}
+
+message ListCateReply{
+  repeated Cate cateList=1;
+}
+
+message Item{
+  int64 id=1;
+  int64 productId=2;
+  int64 number=3;
+  int64 payType=4;
+  int64 status=5;
+  int64 addressId=6;
+  int64 isDeleted=7;
+  float price=8;
+  string userUuid=9;
+  int64 cateId=10;
+  string payTime=11;
+  string createAt=12;
+  string updateAt=13;
+  string deletedAt=14;
+}
+
+message PayOdReq{
+  uint64 id=1;
+  string userUuid=2;
+}
+
+message PayOdReply{}
+
+message GetOrderReq{
+  int64 id=1;
+  string userUuid=2;
+}
+
+message GetOrderReply{
+  Item item=1;
+}
+
+message UpdateOrderReq{
+  uint64 id=1;
+  string userUuid=2;
+  int64 addressId=3;
+}
+
+message UpdateOrderReply{
+  Item item=1;
+}
+
+message DeleteOrderReq{
+  int64 id=1;
+  string userUuid=2;
+
+}
+
+message DeleteOrderReply{
+
+}
+
+message CreateOrderReq{
+  Item item=1;
+}
+
+message CreateOrderReply{
+  Item item=1;
+}
+
+message ListOrderReq{
+  string userUuid=1;
+  int64 page=2;
+  int64 limit=3;
+}
+message ListOrderReply{
+  repeated Item itemList=2;
+}
+
+message ListOrderByCateIdReq{
+  string userUuid=1;
+  int64 cateId=2;
+}
+
+message ListOrderByCateIdReply{
+  repeated Item itemList=1;
+  Cate cate=2;
+}
+
+message ListOdForSReq{
+  uint64 page=1;
+  uint64 limit=2;
+  uint64 status=3;
+  uint64 shopId=4;
+}
+
+message ListOdForSpReply{
+  repeated Item odList=1;
+}
+
+message StockInfo{
+  int64  id=1;
+  int64 productId=2;
+  int64 storage=3;
+  int64 sale=4;
+  int64 isDeleted=5;
+  string userUuid=6;
+}
+
+message CreateStockReq{
+  StockInfo stock=1;
+}
+
+message CreateStockReply{
+  StockInfo stock=1;
+}
+
+message UpdateStockReq{
+  StockInfo stock=1;
+}
+
+message UpdateStockReply{
+  StockInfo stock=1;
+}
+
+message DeleteStockReq{
+  int64 productId=1;
+  string userUuid=2;
+}
+
+message DeleteStockReply{}
+
+message GetStockReq{
+  int64 productId=1;
+}
+
+message GetStockReply{
+  StockInfo stock=1;
+}
+
+

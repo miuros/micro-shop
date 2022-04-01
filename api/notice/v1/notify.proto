@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package api.user;
+option go_package = "user-service/api/notify/v1;v1";
+
+import "google/api/annotations.proto";
+
+service ntSrv{
+  rpc CreateNt(CreateNtReq)returns(CreateNtReply){
+    option (google.api.http) = {
+      post: "/api/notice/create",
+      body: "*",
+    };
+  }
+  rpc UpdateStatus(UpdateStatusReq)returns(UpdateStatusReply){
+    option (google.api.http)={
+      put:"/api/notice/update",
+      body:"*",
+    };
+  }
+  rpc ListNt(ListNtReq)returns(ListNtReply){
+    option (google.api.http) = {
+      get:"/api/notice/list/{userUuid}/{status}/{limit}/{page}/{type}",
+    };
+  }
+  rpc DeleteNt(DeleteNtReq)returns(DeleteNtReply){
+    option(google.api.http)={
+      delete: "/api/notice/delete/{userUuid}/{id}",
+    };
+  }
+  rpc GetNt(GetNtReq)returns(GetNtReply){
+	option(google.api.http)={
+		get:"/api/notice/get/{id}/{userUuid}",
+	};
+  }
+}
+
+message Notice{
+  int64 id=1;
+  string userUuid=2;
+  string userName =3;
+  string toUserUuid=4;
+  string content=5;
+  string type=6;
+  string createAt=7;
+  int64 status=8;
+  int64 isDeleted=9;
+}
+
+message CreateNtReq{
+  Notice n=1;
+}
+
+message CreateNtReply{}
+
+message GetNtReq{
+	uint64 id=1;
+	string userUuid=2;
+	string Type=3;
+}
+
+message GetNtReply{
+	Notice nt=1;
+}
+
+message ListNtReq{
+  uint64 limit=1;
+  uint64 page=2;
+  int64  status=3;
+  string type=4;
+  string userUuid=5;
+}
+
+message UpdateStatusReq{
+  int64 id=1;
+  string type=2;
+  string userUuid=3;
+}
+
+message UpdateStatusReply{}
+
+message ListNtReply{
+  repeated Notice ntList=1;
+  int64 num=2;
+}
+
+message DeleteNtReq{
+  int64 id=1;
+  string userUuid=2;
+  string type=3;
+}
+
+message DeleteNtReply{}

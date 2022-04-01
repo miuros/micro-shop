@@ -1,0 +1,19 @@
+server:
+  http:
+    addr: 0.0.0.0:8001
+    timeout: 1s
+  grpc:
+    addr: 0.0.0.0:9001
+    timeout: 1s
+data:
+  database:
+    driver: mysql
+    source: root:zxcvbnm@tcp(172.19.0.2:3306)/miuros
+  redis:
+    addr: 172.19.0.4:6379
+    read_timeout: 4s
+    write_timeout: 4s
+  etcd:
+    addr: 172.18.0.3:2379
+  consul:
+    addr: miuros.fun:8500

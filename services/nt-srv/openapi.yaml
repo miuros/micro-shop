@@ -1,0 +1,208 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/apps/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: NtSrv API
+    version: 0.0.1
+paths:
+    /api/notice/create:
+        post:
+            tags:
+                - NtSrv
+            operationId: NtSrv_CreateNt
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreateNtReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateNtReply'
+    /api/notice/delete/{userUuid}/{id}:
+        delete:
+            tags:
+                - NtSrv
+            operationId: NtSrv_DeleteNt
+            parameters:
+                - name: userUuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: type
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteNtReply'
+    /api/notice/get/{id}/{userUuid}:
+        get:
+            tags:
+                - NtSrv
+            operationId: NtSrv_GetNt
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: userUuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: Type
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetNtReply'
+    /api/notice/list/{userUuid}/{status}/{limit}/{page}/{type}:
+        get:
+            tags:
+                - NtSrv
+            operationId: NtSrv_ListNt
+            parameters:
+                - name: userUuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: status
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: limit
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: page
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: type
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListNtReply'
+    /api/notice/update:
+        put:
+            tags:
+                - NtSrv
+            operationId: NtSrv_UpdateStatus
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateStatusReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateStatusReply'
+components:
+    schemas:
+        CreateNtReply:
+            type: object
+            properties: {}
+        CreateNtReq:
+            type: object
+            properties:
+                n:
+                    $ref: '#/components/schemas/Notice'
+        DeleteNtReply:
+            type: object
+            properties: {}
+        GetNtReply:
+            type: object
+            properties:
+                nt:
+                    $ref: '#/components/schemas/Notice'
+        ListNtReply:
+            type: object
+            properties:
+                ntList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Notice'
+                num:
+                    type: integer
+                    format: int64
+        Notice:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                userUuid:
+                    type: string
+                userName:
+                    type: string
+                toUserUuid:
+                    type: string
+                content:
+                    type: string
+                type:
+                    type: string
+                createAt:
+                    type: string
+                status:
+                    type: integer
+                    format: int64
+                isDeleted:
+                    type: integer
+                    format: int64
+        UpdateStatusReply:
+            type: object
+            properties: {}
+        UpdateStatusReq:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                type:
+                    type: string
+                userUuid:
+                    type: string
+tags:
+    - name: NtSrv
