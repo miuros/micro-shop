@@ -19,7 +19,7 @@ data:
     addr: 172.18.0.3:2379
   consul:
     addr: 172.19.0.3:8500
-  user: 2285884481@qq.com
-  pwd: eevnzjpedakreaei
+  user: 
+  pwd: 
   host: smtp.qq.com
   odEndpoint: service/order
