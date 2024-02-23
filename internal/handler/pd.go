@@ -144,24 +144,20 @@ func (ph *PdHl) UpdatePd(c *gin.Context) {
 	role := c.GetString("roleName")
 	var res = new(pdv1.GetShopReply)
 	var err error
-	if role == "shopper" {
-		res, err = ph.pdSrv.GetSp(ph.ctx, &pdv1.GetShopReq{Id: int64(pd.ShopId)})
+    res, err = ph.pdSrv.GetSp(ph.ctx, &pdv1.GetShopReq{Id: int64(pd.ShopId)})
 		if err != nil {
 			ph.logger.Println(err)
 			c.JSON(http.StatusOK, util.GetResponse(501, err.Error(), nil))
 			return
 		}
+	if role == "shopper" {
+		
 		if userUuid != res.Sp.UserUuid {
 			c.JSON(http.StatusOK, util.GetResponse(403, "user uuid is wrong", nil))
 			return
 		}
-	} else {
-
-		if pd.ShopId < 1 {
-			c.JSON(http.StatusOK, util.GetResponse(402, "shop id is nil", nil))
-			return
-		}
 	}
+
 
 	var req = &pdv1.Product{
 		Id:          int64(pd.Id),

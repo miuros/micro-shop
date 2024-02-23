@@ -86,10 +86,13 @@ func (pr *productRepo) GetPd(ctx context.Context, id int) (*biz.Product, error) 
 
 func (pr *productRepo) ListPd(ctx context.Context, q *biz.Query) ([]biz.Product, error) {
 	var pdList []biz.Product
+    var err error
 	if len(q.Name) != 0 {
-		pr.data.maria = pr.data.maria.Model(&biz.Product{}).Where("name like ?", fmt.Sprintf("%%%s%%", q.Name))
-	}
-	err := pr.data.maria.Model(&biz.Product{}).Offset(q.Offset).Limit(q.Limit).Find(&pdList).Error
+		err = pr.data.maria.Model(&biz.Product{}).Where("name like ?", fmt.Sprintf("%%%s%%", q.Name)).Offset(q.Offset).Limit(q.Limit).Find(&pdList).Error
+
+	}else{
+	    err= pr.data.maria.Model(&biz.Product{}).Offset(q.Offset).Limit(q.Limit).Find(&pdList).Error
+    }
 	if err != nil {
 		return nil, err
 	}

@@ -22,12 +22,11 @@ func Limiter(rl *RouterLimiter) gin.HandlerFunc {
 			return
 		}
 		if limiter, ok := rl.limiters[c.Request.URL.Path[:idx]]; ok {
-			if limiter.Allow() {
-				c.Next()
-			}
+			if !limiter.Allow() {
 			c.JSON(http.StatusOK, gin.H{"code": 502, "msg": "busy", "data": ""})
 			c.Abort()
 			return
+            }
 		}
 		c.Next()
 	}

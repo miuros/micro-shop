@@ -79,8 +79,8 @@ func (su *ScUseCase) DeleteSc(ctx context.Context, req *v1.DeleteStockReq) (*v1.
 func (su *ScUseCase) GetSc(ctx context.Context, req *v1.GetStockReq) (*v1.GetStockReply, error) {
 	var sc = &Stock{ProductId: req.ProductId}
 	res, err := su.repo.GetSc(ctx, sc)
-	if err != nil {
-		return nil, err
-	}
+    if err!=nil{
+	    return &v1.GetStockReply{Stock: createSc(sc)}, nil
+    }
 	return &v1.GetStockReply{Stock: createSc(res)}, nil
 }

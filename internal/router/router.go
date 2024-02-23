@@ -71,7 +71,7 @@ func InitRouter(enf *casbin.Enforcer) (*Router, func(), error) {
 	userv1.Use(middleware.Jwt(logger, enf))
 	userv1.GET("/get/", uh.GetUser)
 	userv1.POST("/create", uh.CreateUser)
-	userv1.DELETE("/delete/", uh.DeleteUser)
+	userv1.DELETE("/delete", uh.DeleteUser)
 	userv1.PUT("/update", uh.UpdateUser)
 	userv1.GET("/list", uh.ListUser)
 

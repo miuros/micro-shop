@@ -157,7 +157,6 @@ func (or *odRepo) orderRabbitQueue() error {
 	if err != nil {
 		return err
 	}
-
 	err = or.channel.ExchangeDeclare("order_exchange", amqp.ExchangeDirect, true, false, false, false, nil)
 	if err != nil {
 		return err
@@ -170,7 +169,6 @@ func (or *odRepo) orderRabbitQueue() error {
 	if err != nil {
 		return err
 	}
-
 	var arg = amqp.Table{
 		"x-dead-letter-exchange":    "mail_exchange",
 		"x-dead-letter-routing-key": "mail",
@@ -187,7 +185,6 @@ func (or *odRepo) orderRabbitQueue() error {
 	if err != nil {
 		return err
 	}
-
 	err = or.channel.ExchangeDeclare("mail_exchange", amqp.ExchangeDirect, true, false, false, false, nil)
 	if err != nil {
 		return err
@@ -200,7 +197,6 @@ func (or *odRepo) orderRabbitQueue() error {
 	if err != nil {
 		return err
 	}
-
 	go func() {
 		for {
 			select {
@@ -314,7 +310,7 @@ func (or *odRepo) checkStatus() {
 	}
 }
 
-//update address id
+// update address id
 func (or *odRepo) UpdateOd(ctx context.Context, od *biz.Order) (*biz.Order, error) {
 	err := or.data.maria.Model(&biz.Order{}).Where("id=? and user_uuid=?", od.Id, od.UserUuid).Update(&biz.Order{UpdateAt: time.Now().Format("2006-01-02:15-04"), AddressId: od.AddressId}).Error
 	if err != nil {
